@@ -5,6 +5,6 @@ services:
     build: .
     container_name: random-user-api
     ports:
-      - "8000:8000"
+      - "${PORT}:${PORT}"
     volumes:
       - .:/var/www/html

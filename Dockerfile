@@ -17,12 +17,13 @@ WORKDIR /var/www/html
 COPY . .
 
 # Instalar dependencias Laravel
-RUN composer install
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Permisos
 RUN chmod -R 775 storage bootstrap/cache
 
-EXPOSE 8000
+# Render NO usa puertos fijos, así que quitamos el EXPOSE
+# EXPOSE 8000  <-- ELIMINADO
 
-# Comando para arrancar Laravel
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Comando para arrancar Laravel usando el puerto dinámico
+CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT}"]

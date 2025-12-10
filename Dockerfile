@@ -26,4 +26,4 @@ RUN chmod -R 775 storage bootstrap/cache
 # EXPOSE 8000  <-- ELIMINADO
 
 # Comando para arrancar Laravel usando el puerto dinámico
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=10000"]
+CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT}"]

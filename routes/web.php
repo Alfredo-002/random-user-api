@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 // Pantalla inicial → tu login personalizado
 Route::get('/', function () {
-    return view('login'); // ESTA ES TU VISTA PERSONALIZADA
-})->name('login');
+    return redirect('/viewer');
+});
+
 
 // Logout
 Route::post('/logout', function () {
@@ -20,9 +21,10 @@ Route::post('/logout', function () {
 Route::middleware('api')->get('/random-user', [RandomUserController::class, 'generate']);
 
 // Generador (solo logueado)
-Route::middleware(['auth', 'verified'])->get('/viewer', function () {
+Route::get('/viewer', function () {
     return view('random-viewer');
 })->name('viewer');
+
 
 // Dashboard redirige a viewer
 Route::middleware([

@@ -11,6 +11,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Scripts -->
+        @if(app()->environment('local'))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @endif
+
         <!-- Styles -->
         @livewireStyles
     </head>
@@ -34,6 +39,12 @@
                 {{ $slot }}
             </main>
         </div>
+
+        @stack('modals')
+
+        @livewireScripts
+    </body>
+</html>
 
         @stack('modals')
 
